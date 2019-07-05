@@ -1,0 +1,91 @@
+private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+
+        Carrinho c = new Carrinho();
+        CarrinhoDAO cao = new CarrinhoDAO();
+
+            c = getSelectedRow(jTEstoque);  // Isto está correto ?
+            cao.create(c);
+        
+            readTable();
+    } 
+   -------------------------------------------------------------------------
+   
+   
+package model.dao;
+
+import connection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.bean.Carrinho;
+import model.bean.Produto;
+
+public class CarrinhoDAO {
+ 
+    public void create(Carrinho c){
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        
+        try {
+            stmt = con.prepareStatement("INSERT INTO carrinho (nome,descri,qtd,preco)VALUES(?,?,?,?)");
+            stmt.setString(1,c.getNome());   // Essa parte pega cada um desses itens e grava. A parte de baixo insert no BD.
+            stmt.setString(2,c.getDescri()); // Essa parte pega cada um desses itens e grava. A parte de baixo insert no BD.
+            stmt.setInt(3,c.getQtd());       // Essa parte pega cada um desses itens e grava. A parte de baixo insert no BD.  
+            stmt.setDouble(4,c.getPreco());  // Essa parte pega cada um desses itens e grava. A parte de baixo insert no BD.
+            
+            stmt.executeUpdate();
+            // ESSA PARTE DA INSERT NO BANCO DE DADOS, SERVE PRA SALVAR NO BANCO DE DADOS.
+            
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!  uhhuu '-' ");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"ERRO AO SALVAR: " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+    }
+    
+     public List<Carrinho> readCar(){
+     
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Carrinho> carrinhos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM carrinho");
+            rs = stmt.executeQuery();
+            
+            while (rs.next()){
+    //Esse troço aqui ta rodando dentro do BD e ta pegando todos os valores e jogando na TABELA.
+                Carrinho carrinho = new Carrinho();
+                
+             carrinho.setIdproduto(rs.getInt("idproduto"));   
+             carrinho.setNome(rs.getString("nome"));
+             carrinho.setDescri(rs.getString("descri"));
+             carrinho.setQtd(rs.getInt("qtd"));
+             carrinho.setPreco(rs.getDouble("preco"));
+             carrinhos.add(carrinho);
+                
+              //ESSA PARTE FAZ OS PRODUTOS APARECEREM NA TABELA, SE EU APAGAR O QTD AQUI, NA TABELA TB SOME '-'  
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+             ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return carrinhos;
+     }
+    
+}
