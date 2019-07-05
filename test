@@ -782,3 +782,172 @@ public class TelaCar extends javax.swing.JFrame {
     // End of variables declaration                   
 
 }
+----------------------------------------------------------------------------------------
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.bean;
+
+/**
+ *
+ * @author USUÁRIO
+ */
+public class Produto {
+    private int idproduto;
+    private String nome;
+    private String descri;
+    private int qtd;
+    private double preco;
+
+    public int getIdproduto() {
+        return idproduto;
+    }
+
+    public void setIdproduto(int idproduto) {
+        this.idproduto = idproduto;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescri() {
+        return descri;
+    }
+
+    public void setDescri(String descri) {
+        this.descri = descri;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    @Override
+    public String toString() {
+        return getDescri(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+   
+    
+    
+    
+}
+----------------------------------------------------------------------------------------------
+
+
+package model.bean;
+
+public class Carrinho {
+    public int idcarrinho;
+    public int qtdCarr;
+    public float valorTotal;
+    public String nome;
+    public String descri;
+    public int qtd;
+    public Double preco;
+
+    public int getIdcarrinho() {
+        return idcarrinho;
+    }
+
+    public void setIdcarrinho(int idcarrinho) {
+        this.idcarrinho = idcarrinho;
+    }
+
+    public int getQtdCarr() {
+        return qtdCarr;
+    }
+
+    public void setQtdCarr(int qtdCarr) {
+        this.qtdCarr = qtdCarr;
+    }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescri() {
+        return descri;
+    }
+
+    public void setDescri(String descri) {
+        this.descri = descri;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public void setIdproduto(Object valueAt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void addRow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void addRow(Object[] dados) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void add(int selectedRow) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void addRow(Object jTCar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+ 
+    
+    
+    
+    
+    
+}
