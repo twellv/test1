@@ -1,1 +1,6 @@
 - 1 for pra Coluna 1 for pra Linha
+
+l = 0; l < vetor.length -1; l++;
+c= 0; c <vetor.length -1; c+;
+
+O cara criou o vetor com 2 dimensões numa mesma linha e ja deixou as Strings prontas de 1 até 9;
