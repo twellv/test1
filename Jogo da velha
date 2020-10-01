@@ -1,6 +1,158 @@
-- 1 for pra Coluna 1 for pra Linha
+package model;
+import java.util.Scanner;
 
-l = 0; l < vetor.length -1; l++;
-c= 0; c <vetor.length -1; c+;
+public class JogoDaVelha {
 
-O cara criou o vetor com 2 dimensões numa mesma linha e ja deixou as Strings prontas de 1 até 9;
+ private String[][] m = { {"1","2","3"}, {"4","5","6"},{"7","8","9"} };
+ 
+    public String mostrar(){
+        
+        for(int linha = 0; linha < 3; linha++){
+            for(int coluna = 0; coluna < 3; coluna++){
+                
+                System.out.printf("|");
+                System.out.printf(m[linha][coluna]);
+                
+            } System.out.printf("|");
+             System.out.println("\n" + "-------");
+            } 
+        return null;
+        } 
+    //----------------------------------------------------------
+    
+    public void start(){
+        mostrar();
+        Scanner teclado = new Scanner(System.in);
+      
+        for(int i = 1; i < 3; i++){
+            
+            do{
+                jogador01();
+                validar();
+                mostrar();
+                
+                
+                jogador02();
+                validar();
+                mostrar();
+                
+            }while(vale != true || vale != true); 
+        }
+    }  
+    //----------------------------------------------------------
+    
+public void jogador01(){
+    
+    String jogar1;
+    
+    /* TENHO DUVIDA >>>>>>>>>>>>>> A Q U I <<<<<<<<<<<<<<<<<*/
+    //PROCURAR UMA FORMA DE AJEITAR ESSE SCANNER PRA NAO INSTANCIAR MILL OBJETOS;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("JOGADOR 01 faça sua jogada: ");
+        jogar1 = teclado.nextLine();
+        System.out.println("JOGADOR 01 jogou na casa numero: " + " " + jogar1);
+    
+        
+        for (int co = 0; co < 3 ; co++){
+            for (int li = 0; li < 3; li++){
+                
+                if (jogar1.equals(m[li][co])){
+                    m[li][co] = "X";
+                }
+            }
+        }
+    }
+    //----------------------------------------------------------
+public void jogador02(){
+    
+    String jogar2;
+    
+    /* TENHO DUVIDA >>>>>>>>>>>>>> A Q U I <<<<<<<<<<<<<<<<<*/
+    //PROCURAR UMA FORMA DE AJEITAR ESSE SCANNER PRA NAO INSTANCIAR MILL OBJETOS;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("JOGADOR 02 faça sua jogada: ");
+        jogar2 = teclado.nextLine();
+        System.out.println("JOGADOR 02 jogou na casa numero: " + " " + jogar2);
+    
+        
+        for (int co = 0; co < 3 ; co++){
+            for (int li = 0; li < 3; li++){
+                
+                if (jogar2.equals(m[li][co])){
+                    m[li][co] = "O";
+                }
+            }
+        }
+    }
+    //----------------------------------------------------------
+    
+        /* TENHO DUVIDA >>>>>>>>>>>>>> A Q U I <<<<<<<<<<<<<<<<<*/
+        //NÃO TO SABENDO USAR ESSES PARAMETROS DIREITO....validar(String s)
+    boolean vale = false;
+    public boolean validar(){
+        
+        if ( vencedor01() == true || vencedor02() == true){
+            vale = true;
+        }
+    return vale;            
+    } 
+    //---------------------------------------------------------------    
+    boolean condVitoria01 = false;
+    public boolean vencedor01(){
+        
+   
+        if(m[0][0] == "X" && m[0][1] == "X" && m[0][2] == "X"){
+            condVitoria01 = true;
+        } else if(m[1][0] == "X" && m[1][1] == "X" && m[1][2] == "X"){
+            condVitoria01 = true;
+        } else if(m[2][0] == "X" && m[2][1] == "X" && m[2][2] == "X"){
+            condVitoria01 = true;
+        
+        
+        } else if(m[0][0] == "X" && m[1][0] == "X" && m[2][0] == "X"){
+            condVitoria01 = true;
+        } else if(m[0][1] == "X" && m[1][1] == "X" && m[2][1] == "X"){
+            condVitoria01 = true;
+        } else if(m[0][2] == "X" && m[1][2] == "X" && m[2][2] == "X"){
+            condVitoria01 = true;
+        
+        
+        } else if(m[0][0] == "X" && m[1][1] == "X" && m[2][2] == "X"){
+            condVitoria01 = true;
+        } else if(m[2][0] == "X" && m[1][1] == "X" && m[0][2] == "X"){
+            condVitoria01 = true;
+        }
+        return condVitoria01;
+    }
+
+    //----------------------------------------------------------------
+    
+        boolean condVitoria02 = false;
+    public boolean vencedor02(){
+        
+        
+        if(m[0][0] == "O" && m[0][1] == "O" && m[0][2] == "O"){
+            condVitoria02 = true;
+        } else if(m[1][0] == "O" && m[1][1] == "O" && m[1][2] == "O"){
+            condVitoria02 = true;
+        } else if(m[2][0] == "O" && m[2][1] == "O" && m[2][2] == "O"){
+            condVitoria02 = true;
+        
+        } else if(m[0][0] == "O" && m[1][0] == "O" && m[2][0] == "O"){
+            condVitoria02 = true;
+        } else if(m[0][1] == "O" && m[1][1] == "O" && m[2][1] == "O"){
+            condVitoria02 = true;
+        } else if(m[0][2] == "O" && m[1][2] == "O" && m[2][2] == "O"){
+            condVitoria02 = true;
+        
+        } else if(m[0][0] == "O" && m[1][1] == "O" && m[2][2] == "O"){
+            condVitoria02 = true;
+        } else if(m[2][0] == "O" && m[1][1] == "O" && m[0][2] == "O"){
+            condVitoria02 = true;
+        }
+        return condVitoria02;
+    }
+    
+    //----------------------------------------------------------------
+
+}
